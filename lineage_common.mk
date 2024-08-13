@@ -50,3 +50,6 @@ PRODUCT_PACKAGES += \
 
 # Touch
 include hardware/google/pixel/touch/device.mk
+
+# UDFPS
+TARGET_HAS_UDFPS := true
