@@ -46,6 +46,3 @@ PRODUCT_PACKAGES += \
 
 # Touch
 include hardware/google/pixel/touch/device.mk
-
-# ViperFX
-$(call inherit-product-if-exists, packages/apps/ViPER4AndroidFX/config.mk)
