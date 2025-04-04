@@ -14,6 +14,12 @@
 # limitations under the License.
 #
 
+# ViperFX
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/app/ViPER4AndroidFX/ViPER4AndroidFX.apk
+
 -include vendor/google_devices/zuma/proprietary/telephony/device-vendor.mk
 include device/google/zuma/device.mk
 
