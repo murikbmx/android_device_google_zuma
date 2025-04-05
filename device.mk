@@ -14,6 +14,12 @@
 # limitations under the License.
 #
 
+# ViperFX
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/app/ViPER4AndroidFX/ViPER4AndroidFX.apk
+    
 include device/google/gs-common/device.mk
 include device/google/gs-common/gs_watchdogd/watchdog.mk
 include device/google/gs-common/ramdump_and_coredump/ramdump_and_coredump.mk
