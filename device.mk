@@ -195,9 +195,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 # b/295257834 Add HDR shaders to SurfaceFlinger's pre-warming cache
 PRODUCT_VENDOR_PROPERTIES += ro.surface_flinger.prime_shader_cache.ultrahdr=1
 
-DEVICE_PACKAGE_OVERLAYS += device/google/zuma/overlay
-DEVICE_PACKAGE_OVERLAYS += device/google/zuma/overlay-lineage
-
 # This device is shipped with 34 (Android U)
 PRODUCT_SHIPPING_API_LEVEL := 34
 
@@ -328,10 +325,6 @@ PRODUCT_PROPERTY_OVERRIDES += audio.spatializer.effect.util_clamp_min=300
 # Camera
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/camera
-
-# Connectivity
-PRODUCT_PACKAGES += \
-        ConnectivityOverlay
 
 # Storage health HAL
 PRODUCT_PACKAGES += \
@@ -473,9 +466,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PRODUCT_PROPERTIES += \
 	persist.bluetooth.bqr.event_mask?=30 \
 	persist.bluetooth.bqr.min_interval_ms=500
-
-PRODUCT_ENFORCE_RRO_TARGETS := \
-	framework-res
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -623,14 +613,35 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     device/google/zuma/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
 
+# ANGLE - Almost Native Graphics Layer Engine
+PRODUCT_PACKAGES += \
+    ANGLE
+
+# Audio
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml
+
+# Bionic
+PRODUCT_NO_BIONIC_PAGE_SIZE_MACRO := true
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth.prebuilt.xml \
+    android.hardware.bluetooth_le.prebuilt.xml
+
 # Camera
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.camera.extensions.package=com.google.android.apps.camera.services \
     ro.vendor.camera.extensions.service=com.google.android.apps.camera.services.extensions.service.PixelExtensions
 
 # EUICC
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.euicc.mep.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.mep.xml \
+    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
+
+# GPS
 PRODUCT_PACKAGES += \
-    EuiccSupportPixelOverlay
+    android.hardware.location.gps.prebuilt.xml
 
 # Lineage Health
 include hardware/google/pixel/lineage_health/device.mk
@@ -643,6 +654,53 @@ $(call soong_config_set_bool,lineage_health,charging_control_supports_toggle,fal
 PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += \
     device/google/zuma/linker.config.json
 
+# NFC
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.ese.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hcef.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml
+
+PRODUCT_PACKAGES += \
+    android.hardware.nfc-service.st
+
+# Overlays
+PRODUCT_PACKAGES += \
+    DMServiceOverlayProductZuma \
+    EuiccSupportPixelOverlay \
+    FrameworkResOverlayProductZuma \
+    FrameworkResOverlayVendorZuma \
+    GlanceableHubConfigOverlay \
+    GlanceableHubSettingsConfigOverlay \
+    GlanceableHubSettingsConfigOverlay2022 \
+    GlanceableHubSysuiConfigOverlay \
+    GoogleConfigOverlay \
+    GooglePermissionControllerSafetyCenterOverlay \
+    PixelConfigOverlay2019 \
+    PixelConfigOverlay2021 \
+    PixelConfigOverlayCommon \
+    PixelConnectivityOverlay2023 \
+    PixelDisplayServiceOverlayProductZuma \
+    PixelNfcOverlayCommon \
+    PixelTetheringOverlay2021 \
+    PixelWifiOverlay2024_midyearZuma \
+    SafetyRegulatoryInfoOverlayProductZuma \
+    SettingsGoogleOverlayProductZuma \
+    SettingsProviderOverlayProductZuma \
+    SystemUIGoogleOverlayProductZuma \
+    SystemUIGoogleOverlayVendorZuma \
+    TeleServiceOverlayProductZuma \
+    TeleServiceOverlayVendorZuma \
+    TelecomOverlayProductZuma \
+    TelephonyProviderOverlayProductZuma
+
+PRODUCT_PACKAGES += \
+    FrameworkResOverlayLineageZuma \
+    LineageSdkOverlayZuma \
+    SettingsOverlayZuma \
+    SimpleDeviceConfigOverlayZuma
+
 # Parts
 PRODUCT_PACKAGES += \
     GoogleParts
@@ -651,9 +709,17 @@ PRODUCT_PACKAGES += \
 TARGET_PRODUCT_PROP += device/google/zuma/product.prop
 TARGET_SYSTEM_EXT_PROP += device/google/zuma/system_ext.prop
 
-# Tethering
+# SecureElement
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.ese.xml \
+    frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.uicc.xml
+
 PRODUCT_PACKAGES += \
-    TetheringOverlay
+    android.hardware.secure_element-service.thales
+
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.dynamic_sensor_hal
 
 # Touch
 include hardware/google/pixel/touch/device.mk
