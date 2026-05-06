@@ -426,3 +426,6 @@ DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += \
 
 # ZRAM writeback
 include hardware/google/pixel/mm/device_gki.mk
+
+# BCR Call Recording
+$(call inherit-product-if-exists, vendor/bcr/bcr.mk)
