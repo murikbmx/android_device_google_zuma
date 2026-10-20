@@ -75,6 +75,10 @@ endif
 PRODUCT_COPY_FILES += \
 	device/google/zuma/conf/init.recovery.device.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.zuma.rc
 
+# Regional restrictions
+PRODUCT_COPY_FILES += \
+	device/google/zuma/conf/init.regional.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.regional.rc
+
 # Fstab files
 PRODUCT_SOONG_NAMESPACES += \
         device/google/zuma/conf/f2fs

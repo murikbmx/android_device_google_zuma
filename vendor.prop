@@ -209,3 +209,20 @@ vendor.zram.size=50p
 
 # Zygote
 zygote.critical_window.minute=10
+
+# Regional restrictions (5G, IMS)
+# Based on https://github.com/klab7/Pixel-Regional-Restrictions-Disabler
+persist.vendor.radio.5g=1
+persist.vendor.radio.5g_mode_pref=1
+persist.vendor.radio.5g_mode_pref_0=1
+persist.vendor.radio.5g_mode_pref_1=1
+persist.vendor.radio.calls.on.ims=1
+persist.vendor.radio.data_con_rprt=1
+persist.vendor.radio.data_ltd_sys_ind=1
+persist.vendor.radio.enable_temp_dds=true
+persist.vendor.radio.force_ltd_sys_ind=1
+persist.vendor.radio.force_on_dc=true
+persist.vendor.radio.manual_nw_rej_ct=1
+persist.vendor.radio.redir_party_num=1
+# 0 no support - 1 nsa - 2 sa - 3 nsa+sa
+ro.vendor.radio.5g=3

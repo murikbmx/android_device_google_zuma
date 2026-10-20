@@ -16,6 +16,7 @@
     </queries>
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.MANAGE_WIFI_COUNTRY_CODE" />
 
     <uses-sdk
         android:minSdkVersion="30"

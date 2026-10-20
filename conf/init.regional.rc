@@ -1,0 +1,5 @@
+# Report a supported country to apps that gate features by region, like the
+# Pixel Regional Restrictions Disabler module does after boot.
+on property:sys.boot_completed=1
+    setprop gsm.operator.iso-country us,us
+    setprop gsm.sim.operator.iso-country us,us
