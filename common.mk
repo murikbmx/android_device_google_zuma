@@ -403,3 +403,7 @@ include hardware/google/pixel/mm/device_gki.mk
 
 # BCR Call Recording
 $(call inherit-product-if-exists, vendor/bcr/bcr.mk)
+
+# GCam Photos Preview
+PRODUCT_PACKAGES += \
+    GCamPhotosPreview
