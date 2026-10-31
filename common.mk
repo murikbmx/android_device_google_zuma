@@ -401,6 +401,9 @@ include hardware/google/pixel/mm/device_gki.mk
 # BCR Call Recording
 $(call inherit-product-if-exists, vendor/bcr/bcr.mk)
 
+# GboardWu (replaces LatinIME)
+$(call inherit-product-if-exists, vendor/gboard/gboard.mk)
+
 # GCam Photos Preview
 PRODUCT_PACKAGES += \
     GCamPhotosPreview
