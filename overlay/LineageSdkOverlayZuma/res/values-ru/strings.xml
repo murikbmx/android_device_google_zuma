@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Charging speed (kernel usb_5v_only) -->
+    <string name="charging_speed_slow">Медленная зарядка (5 В, до 2 А)</string>
+    <string name="charging_speed_fast">Быстрая зарядка</string>
+</resources>

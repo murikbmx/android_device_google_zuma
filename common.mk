@@ -304,9 +304,17 @@ PRODUCT_PACKAGES += \
 # Lineage Health
 include hardware/google/pixel/lineage_health/device.mk
 
+PRODUCT_COPY_FILES += \
+	device/google/zuma/conf/init.lineage.charging.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.lineage.charging.rc
+
 $(call soong_config_set_bool,lineage_health,charging_control_supports_deadline,true)
 $(call soong_config_set_bool,lineage_health,charging_control_supports_limit,true)
 $(call soong_config_set_bool,lineage_health,charging_control_supports_toggle,false)
+
+# Charging speed: Slow = USB-PD 5V only, input limited to 2A, no PPS (kernel usb_5v_only)
+$(call soong_config_set,lineage_health,fast_charge_node,/sys/devices/platform/google$(comma)charger/usb_5v_only)
+$(call soong_config_set,lineage_health,fast_charge_value_none,1)
+$(call soong_config_set,lineage_health,fast_charge_value_fast_charge,0)
 
 # Linker config
 PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += \
